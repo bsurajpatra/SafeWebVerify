@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
@@ -91,5 +92,19 @@ exports.deleteAccount = async (req, res) => {
     res.status(200).json({ message: 'Account deleted successfully.' });
   } catch (err) {
     res.status(500).json({ message: 'Server error.' });
+  }
+};
+
+exports.checkUrl = async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url) {
+      return res.status(400).json({ message: 'No URL provided.' });
+    }
+    // Call the Flask ML API
+    const flaskRes = await axios.post('http://localhost:5000/extract-and-predict', { url });
+    res.status(200).json(flaskRes.data);
+  } catch (err) {
+    res.status(500).json({ message: 'Error checking URL.', error: err.message });
   }
 }; 

@@ -8,6 +8,9 @@ const Dashboard = () => {
   const dropdownRef = useRef(null);
   const [url, setUrl] = useState("");
   const [urlMsg, setUrlMsg] = useState("");
+  const [urlResult, setUrlResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,6 +38,27 @@ const Dashboard = () => {
     navigate("/login");
   };
 
+  const handleUrlSubmit = async (e) => {
+    e.preventDefault();
+    setUrlResult(null);
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch('/api/auth/check-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Error checking URL');
+      setUrlResult(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="dashboard-full-container">
       <header className="dashboard-header">
@@ -58,7 +82,7 @@ const Dashboard = () => {
         </div>
       </header>
       <main className="dashboard-main-content">
-        <form className="dashboard-url-form" onSubmit={e => e.preventDefault()}>
+        <form className="dashboard-url-form" onSubmit={handleUrlSubmit}>
           <label htmlFor="url-input" className="dashboard-url-label">Enter the URL to check:</label>
           <input
             id="url-input"
@@ -70,10 +94,18 @@ const Dashboard = () => {
             required
             autoComplete="off"
           />
+          <button className="dashboard-url-check-btn" type="submit" disabled={loading}>{loading ? 'Checking...' : 'Check'}</button>
         </form>
         <div className="dashboard-url-warning">
           ⚠️ Please do not enter shortened URLs (e.g., bit.ly, tinyurl, etc.). Only full destination URLs are allowed.
         </div>
+        {error && <div className="dashboard-url-error">{error}</div>}
+        {urlResult && (
+          <div className={`dashboard-url-result ${urlResult.label === 'Phishing' ? 'phishing' : 'legitimate'}`}> 
+            <strong>Result:</strong> {urlResult.label} <br />
+            <strong>Confidence:</strong> {(urlResult.confidence * 100).toFixed(2)}%
+          </div>
+        )}
       </main>
     </div>
   );

@@ -192,4 +192,67 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
+}
+
+.dashboard-url-check-btn {
+  margin-top: 1.1rem;
+  padding: 1rem 2.2rem;
+  background: linear-gradient(90deg, #2563eb 0%, #1a237e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.10);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dashboard-url-check-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.dashboard-url-check-btn:hover:not(:disabled) {
+  background: linear-gradient(90deg, #1a237e 0%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.dashboard-url-error {
+  color: #e53935;
+  background: #ffebee;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+  text-align: left;
+}
+
+.dashboard-url-result {
+  margin-top: 1.5rem;
+  padding: 1.2rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 16px rgba(37,99,235,0.10);
+  text-align: center;
+}
+
+.dashboard-url-result.phishing {
+  background: #ffebee;
+  color: #e53935;
+  border: 2px solid #e53935;
+}
+
+.dashboard-url-result.legitimate {
+  background: #e3fcec;
+  color: #256029;
+  border: 2px solid #43a047;
 } 
