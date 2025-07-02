@@ -5,6 +5,7 @@ import Signup from './components/Signup/Signup'
 import Login from './components/Login/Login'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import Dashboard from './components/Dashboard/Dashboard'
+import Profile from './components/Profile/Profile'
 import './App.css'
 
 function LandingPageWithNav() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,31 +1,111 @@
-.dashboard-container {
+.dashboard-full-container {
   min-height: 100vh;
   min-width: 100vw;
   width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
 }
 
-.dashboard-card {
-  background: rgba(255,255,255,0.85);
-  border-radius: 2rem;
-  box-shadow: 0 8px 32px rgba(30, 64, 175, 0.13);
-  border: 1.5px solid #e0e7ef;
-  backdrop-filter: blur(8px);
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  min-width: 340px;
-  max-width: 400px;
+.dashboard-header {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 16px rgba(30, 64, 175, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dashboard-title {
+  flex: 1;
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1a237e;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+.dashboard-avatar-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 4.5rem;
+}
+
+.dashboard-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: box-shadow 0.2s;
+}
+
+.dashboard-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dashboard-avatar:focus {
+  outline: 2px solid #2563eb;
+}
+
+.dashboard-dropdown {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(30, 64, 175, 0.13);
+  padding: 0.5rem 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.dashboard-dropdown button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-radius: 0.7rem;
+}
+
+.dashboard-dropdown button:hover {
+  background: #e0e7ef;
+  color: #1a237e;
+}
+
+.dashboard-main-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: box-shadow 0.3s, background 0.3s;
+  justify-content: flex-start;
+  min-height: 60vh;
+  padding-top: 3.5rem;
 }
 
-.dashboard-card h2 {
+.dashboard-main-content h2 {
   font-size: 2.2rem;
   font-weight: 700;
   color: #1a237e;
@@ -34,7 +114,7 @@
   text-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 
-.dashboard-card p {
+.dashboard-main-content p {
   font-size: 1.1rem;
   color: #374151;
   margin-bottom: 2rem;
@@ -61,4 +141,55 @@
   background: linear-gradient(90deg, #1a237e 0%, #2563eb 100%);
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 8px 32px rgba(37, 99, 235, 0.18);
+}
+
+.dashboard-url-form {
+  width: 100%;
+  max-width: 540px;
+  margin: 1.2rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.2rem;
+}
+
+.dashboard-url-label {
+  font-size: 1.45rem;
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.dashboard-url-input {
+  padding: 1.3rem 1.7rem;
+  border-radius: 1.5rem;
+  border: 2px solid #e0e7ef;
+  background: rgba(248,250,252,0.7);
+  font-size: 1.35rem;
+  color: #1a237e;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.08);
+}
+
+.dashboard-url-input:focus {
+  border: 2px solid #2563eb;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.13);
+}
+
+.dashboard-url-warning {
+  color: #e53935;
+  background: #fff3e0;
+  border-radius: 0.9rem;
+  padding: 1rem 1.5rem;
+  margin-top: 1.2rem;
+  font-size: 1.13rem;
+  text-align: left;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 12px rgba(229,57,53,0.09);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 } 
