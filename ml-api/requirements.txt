@@ -1,0 +1,13 @@
+Flask
+joblib
+numpy
+pandas
+scikit-learn
+imbalanced-learn   
+requests
+beautifulsoup4
+python-whois
+dnspython
+tldextract
+urllib3
+gunicorn
