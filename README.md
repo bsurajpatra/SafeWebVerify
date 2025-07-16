@@ -120,15 +120,20 @@ CLIENT_URL=http://localhost:5173
 
 The pre-trained ML model file (`phishing_model.pkl`) is **not included** in this repository due to its size.
 
-**Download the model from:**
+### 🔗 Download Instructions
 
-[https://your-download-link.com/phishing_model.pkl](https://your-download-link.com/phishing_model.pkl)
+You can download the model from the following GitHub repository:
 
-After downloading, place the file in the `/ml-api` directory:
+**[https://github.com/bsurajpatra/Phishing-detector-ml](https://github.com/bsurajpatra/Phishing-detector-ml)**
 
-```
-ml-api/phishing_model.pkl
-```
+1. Visit the above link.
+2. Download the ZIP file provided in the repository.
+3. Extract the contents — you will find the `phishing_model.pkl` file along with other training scripts and files.
+4. You **only need the `phishing_model.pkl`** file for this project; the rest can be ignored.
+
+### 📂 Placement
+
+After extracting the file, place `phishing_model.pkl` in the `/ml-api` directory:
 
 ---
 
