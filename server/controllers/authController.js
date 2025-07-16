@@ -148,4 +148,21 @@ exports.getHistory = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Error fetching history.', error: err.message });
   }
+};
+
+exports.deleteHistory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!req.user || !req.user.userId) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const history = await History.findOne({ _id: id, user: req.user.userId });
+    if (!history) {
+      return res.status(404).json({ message: 'History entry not found.' });
+    }
+    await History.deleteOne({ _id: id });
+    res.status(200).json({ message: 'History entry deleted.' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting history entry.', error: err.message });
+  }
 }; 
