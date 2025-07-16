@@ -44,9 +44,13 @@ const Dashboard = () => {
     setError("");
     setLoading(true);
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch('/api/auth/check-url', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        },
         body: JSON.stringify({ url })
       });
       const data = await res.json();
@@ -76,6 +80,7 @@ const Dashboard = () => {
           {dropdownOpen && (
             <div className="dashboard-dropdown">
               <button onClick={() => { setDropdownOpen(false); navigate('/profile'); }}>Profile</button>
+              <button onClick={() => { setDropdownOpen(false); navigate('/history'); }}>History</button>
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}

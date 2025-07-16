@@ -6,6 +6,7 @@ import Login from './components/Login/Login'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import Dashboard from './components/Dashboard/Dashboard'
 import Profile from './components/Profile/Profile'
+import History from './components/History/History';
 import './App.css'
 
 function LandingPageWithNav() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/history" element={<History />} />
       </Routes>
       <Footer />
     </Router>

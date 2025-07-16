@@ -1,0 +1,138 @@
+/* History Page - styled to match Dashboard theme */
+
+.history-full-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+.history-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 16px rgba(30, 64, 175, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.history-title {
+  flex: 1;
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1a237e;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  cursor: pointer;
+}
+
+.history-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 60vh;
+  padding-top: 3.5rem;
+}
+
+.history-table-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(37,99,235,0.10);
+}
+
+.history-table th {
+  padding: 1rem;
+  text-align: left;
+  color: #2563eb;
+  font-weight: 700;
+  background: #e0e7ef;
+}
+
+.history-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e0e7ef;
+  word-break: break-all;
+  font-size: 1.08rem;
+}
+
+.history-result-badge {
+  display: inline-block;
+  min-width: 90px;
+  padding: 0.3rem 0.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0.7rem;
+  text-align: center;
+}
+
+.history-result-badge.phishing {
+  background: #ffebee;
+  color: #e53935;
+  border: 2px solid #e53935;
+}
+
+.history-result-badge.legitimate {
+  background: #e3fcec;
+  color: #256029;
+  border: 2px solid #43a047;
+}
+
+.history-result-badge.suspicious {
+  background: #fffde7;
+  color: #bfa100;
+  border: 2px solid #ffe082;
+}
+
+.history-error {
+  color: #e53935;
+  background: #ffebee;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+  text-align: left;
+}
+
+.history-status-message {
+  margin-top: 1.5rem;
+  padding: 1.2rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 16px rgba(37,99,235,0.10);
+  text-align: center;
+}
+
+.history-status-message.suspicious {
+  background: #fffde7;
+  color: #bfa100;
+  border: 2px solid #ffe082;
+} 

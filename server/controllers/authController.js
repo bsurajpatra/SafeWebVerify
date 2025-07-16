@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const { extractFeaturesFromUrl } = require('../utils/featureExtractor');
+const History = require('../models/History');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
@@ -104,10 +105,47 @@ exports.checkUrl = async (req, res) => {
     }
     // Extract features in Node.js
     const features = await extractFeaturesFromUrl(url);
+    // Check if features is an array of all 1s (whitelisted domain)
+    const isWhitelisted = Array.isArray(features) && features.length === 30 && features.every(f => f === 1);
+    if (isWhitelisted) {
+      // Store in history as Legitimate
+      if (req.user && req.user.userId) {
+        await History.create({
+          user: req.user.userId,
+          url,
+          result: 'Legitimate',
+          features
+        });
+      }
+      return res.status(200).json({ label: 'Legitimate', confidence: 1 });
+    }
     // Call the Flask ML API with features
     const flaskRes = await axios.post('http://localhost:5000/predict', { features });
+    const result = flaskRes.data.result || flaskRes.data.label || 'Unknown';
+    // Store in history
+    if (req.user && req.user.userId) {
+      await History.create({
+        user: req.user.userId,
+        url,
+        result,
+        features
+      });
+    }
     res.status(200).json(flaskRes.data);
   } catch (err) {
     res.status(500).json({ message: 'Error checking URL.', error: err.message });
+  }
+};
+
+// Fetch user history
+exports.getHistory = async (req, res) => {
+  try {
+    if (!req.user || !req.user.userId) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const history = await History.find({ user: req.user.userId }).sort({ createdAt: -1 });
+    res.status(200).json(history);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching history.', error: err.message });
   }
 }; 
