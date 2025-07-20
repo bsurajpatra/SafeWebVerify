@@ -93,7 +93,7 @@ CLIENT_URL=http://localhost:5173
   - Returns label (`Phishing`, `Legitimate`, `Suspicious/Unknown`) and confidence
   - Whitelisted domains are instantly marked as legitimate
 - **Location:** `/ml-api`
-- **Start:** `pip install -r requirements.txt && python app.py` in `/ml-api`
+- **Start:** `pip install -r requirements.txt && source venv/bin/activate && python app.py` in `/ml-api`
 
 ---
 
